@@ -1,0 +1,200 @@
+<!DOCTYPE html> 
+<html> 
+<!-- The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only.  Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.
+ 
+THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
+ 
+ 
+Authors in chronological order of contribution:
+Tim Riedel
+Mukhil Seralaathan
+ 
+Further Information:
+http://cns.utexas.edu/fri
+ 
+Research Educator:
+Timothy Riedel
+triedel@utexas.edu
+ 
+Brief Description of Goal of Code:
+The code should create an app which cycles through 4 different yes or no questions pertaining to the symptoms of colds and allergies, providing a result based on answers to these questions. This assignment will teach me how to implement html, javascript, and css commands. I will also learn how to create pages and how to move from one to the next. Most complex will be creating a function to calculate and display the results of the fake diagnosis.
+ 
+Known Issues:
+Had trouble with the results because it was replacing the wrong portion of the code. After changing the name of the last page from results to end, the issue was resolved.
+
+https://www.w3schools.com/w3css/default.asp
+https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
+-->
+	
+   <head> 
+	<!-- Swapping Hello world with Cold or Allergy? should change the words on the tab. -->
+      <title>Cold or Allergy?</title>  
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <link rel="stylesheet" href="w3.css">
+      <link rel="stylesheet" href="w3-colors-flat.css">
+   </head> 
+
+<!-- This is the Javascript, and the first two variables set up a counter for allergy and cold. -->
+<script>
+        var allergy_count = 0;
+        var cold_count = 0;
+
+	// The following two functions add a count to either the allergy or cold count, depending on the answer to a question. A tally of the count shows up as an alert after clicking each answer, yes or no.
+        function allergyAdd(){
+            allergy_count = allergy_count + 1;
+		alert(allergy_count);
+
+        }
+
+        function coldAdd(){
+            cold_count = cold_count + 1;
+		alert(cold_count);
+		//I added the alert for this one as there was no code for it before.
+        }
+	// 7) Next I had to write a function to calculate the probabilities of either cold or allergy. The math functions below give the respective allergy and cold percentages. The last variable should allow me to display the results on the results page.
+	function probabilities(){
+		var allergyPercent  = (allergy_count / 4) * 100;
+		var coldPercent = (cold_count / 4) * 100;
+		var resultText = document.getElementById("results");
+		resultText.innerHTML = "Probability it is allergies = " + allergyPercent + "% <br> Probability it is a cold = " + coldPercent + "%";
+		// 11) The line above was moved from the page to here in javascript so that it would actually be executed instead of simply displayed. Also by adding percent signs "%" The display looks better.
+	}
+	
+	// The following code lets you know when the file was last modified.
+	// This will help you know if you are looking at the new version of the file or if there is a delay on GitHub.
+       		var docMod = document.lastModified;
+      		alert("This file last modified  " + docMod);
+       		console.log("This file last modified  " + docMod);
+	// If you find the alert box annoying, comment out that line and timestamp will still show up in the debugging console
+
+  </script>
+
+
+
+<style>	
+.body {
+     margin: 0em;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    overflow-y: auto;
+    z-index: 0;
+    background-color: hsl(0,0%,100%);
+}
+
+  .page:target {
+    left: 0vw;
+    z-index: 1;
+}
+</style>
+
+<!-- The following code pertains to the content of the pages -->
+
+<!-- This establishes the header -->
+<body>
+<div id="header" class="w3-container w3-flat-carrot">
+	<h1>Cold or Allergies?</h1>
+</div>
+
+<!-- The first command creates the introduction question while the second is CSS3 creating a button. The last two are disclaimers for users of the app in text --> 
+<div id="content" class="w3-container">
+	<p>Are you feeling like you might have a cold but wonder if it is allergies. Answer a few short questions to find out!</p>
+	
+	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a>
+	
+	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
+ 	
+	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+
+<!-- This code creates the frist page with the first diagnostic question. -->
+<div class="page" id="one">
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 1</h1>
+	</div>
+	<!-- 2) Now I will try adding the first yes button to the first question page as well as text for the first question. I will not be inputting the javascript function yet. -->
+    	<!-- 3) Next I will add the no button and the javascript function for the allergy or cold calculation. With this the first question page should be complete. -->
+	<div id="content" class="w3-container">
+		<p>Are your eyes watery or itchy?</p>
+		<!-- The following two commands are for buttons that will run the javascript functions and move on to the next page -->
+		<a href="#two"  onclick="allergyAdd();" class="w3-btn w3-black"> Yes </a>
+        	<a href="#two"  onclick="coldAdd();" class="w3-btn w3-black"> No </a>
+    	</div>
+</div>
+<!-- This is page 2, the second page with a diagnostic question, and the h1 command puts question 2 in the header.-->
+<div class="page" id="two">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 2</h1>
+	</div>
+	<!-- 4) Here I will do exactly what I did for question 1 only for question 2, remembering to switch the yes and no values for the javascript program this time. I will also code the page to move onto page 3 and not page 2. -->
+	<div id="content" class="w3-container">
+		<p>Do you have a fever?</p>
+		<a href="#three"  onclick="coldAdd();" class="w3-btn w3-black"> Yes </a>
+		<a href="#three"  onclick="allergyAdd();" class="w3-btn w3-black"> No </a>
+	</div>
+</div>	
+
+	<!-- 5) Next I will add pages 3 and 4. Page 3 will have the same button commands as page 2 and page 4 the same as 1. I will be inputting each question's text as well. Finally, I will chnge the page ids to three and four. -->
+
+	<!-- This creates the third page containing the thrid question. -->
+<div class="page" id="three">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 3</h1>
+	</div>
+	<div id="content" class="w3-container">
+		<p>Do you have a sore throat?</p>
+		<a href="#four"  onclick="coldAdd();" class="w3-btn w3-black"> Yes </a>
+		<a href="#four"  onclick="allergyAdd();" class="w3-btn w3-black"> No </a>
+	</div>
+</div>
+
+	<!-- This creates the fourth and final question page -->
+<div class="page" id="four">
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 4</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Are your symptoms seasonal or chronic?</p>
+		<a href="#click"  onclick="allergyAdd();" class="w3-btn w3-black"> Yes </a>
+        	<a href="#click"  onclick="coldAdd();" class="w3-btn w3-black"> No </a>
+    	</div>
+</div>
+	
+	<!-- 6) Now, I will create a temporary dead results page to test if all the code before works fine. After I check this off, I will move on truly coding the results page. -->
+	<!-- 8) After testing was successful, I created an intermediate page called click so that I could use a button on that page to run the probabilities function that I created. -->
+<div class="page" id="click">
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Results</h1>
+	</div>
+	
+	<!-- This button should run the final program I added which will calculate results and display them on the next page. -->
+	<div id="content" class="w3-container">
+		<p>Click the button below for your results.</p>
+		<a href="#end" onclick="probabilities();" class="w3-btn w3-grey w3-round"> Results </a>
+    	</div>
+</div>
+	<!-- 9) This last page is where the results will be displayed. The innerHTML line takes care of the display of the probabilities.-->
+<div class="page" id="end">
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Results</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+	<!-- 10) I originally misunderstood this prompt and put it on the page instead of in the javascript. In this edit, I moved it to its proper place so that the results display would work properly. -->
+	<p id="results">probabilities</p>
+		<!--, after trouble shooting, I figured out how to use the innerHTML to replace "probabilities" in the display. It was beacuse the page name was also results, so I changed it to end instead.-->
+	</div>
+</div>	
+	
+<footer class="w3-bottom w3-container w3-flat-carrot">
+	<p>DIY!</p>
+</footer>
+
+</body>
+</html>
